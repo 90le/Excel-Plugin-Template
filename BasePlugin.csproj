@@ -30,7 +30,7 @@
     <Reference Include="WindowsBase" />
     <Reference Include="System.Xaml" />
     <Reference Include="DTI_Tool.AddIn.Common">
-      <HintPath>..\..\bin\Debug\DTI_Tool.AddIn.dll</HintPath>
+      <HintPath>..\..\bin\Debug\DTI_Tool.IPlugin.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
