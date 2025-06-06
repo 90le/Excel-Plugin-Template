@@ -9,7 +9,7 @@
 
 **一个功能完整的 Excel 插件开发模板，基于 DTI_Tool.AddIn 框架**
 
-[📖 使用文档](#-快速开始) • [🎯 功能特性](#-功能特性) • [💡 示例展示](#-示例展示) • [🤝 贡献指南](CONTRIBUTING.md)
+[📖 使用文档](#-快速开始) • [🎯 功能特性](#-功能特性) • [💡 示例展示](#-示例展示) • [🤝 贡献指南](docs/CONTRIBUTING.md)
 
 </div>
 
@@ -50,6 +50,13 @@ DTI_Tool.AddIn 是一个强大的热拔插插件开发框架，具有以下特�
 - ✅ **示例代码** - 3个完整的功能示例
 - ✅ **最佳实践** - 性能优化和错误处理指南
 - ✅ **部署指南** - 从开发到发布的完整流程
+
+## 📖 文档导航
+
+- 📋 [项目总览](docs/项目总览.md) - 项目架构和功能概述
+- 🛠️ [开发指南](docs/开发指南.md) - 详细的开发教程和最佳实践
+- 🔄 [插件更新配置指南](docs/插件更新配置指南.md) - 自动更新功能配置说明
+- 📚 [完整中文文档](docs/README-CN.md) - 详细的中文开发文档
 
 ## 🚀 快速开始
 
@@ -174,7 +181,7 @@ BasePlugin/
 ## 📞 支持与联系
 
 ### 🆘 获取帮助
-- 📖 [查看文档](README-CN.md)
+- 📖 [查看文档](docs/README-CN.md)
 - 🐛 [提交 Issue](https://github.com/90le/Excel-Plugin-Template/issues)
 - 💬 [讨论区](https://github.com/90le/Excel-Plugin-Template/discussions)
 
@@ -207,6 +214,6 @@ in the Software without restriction...
 
 **让 Excel 插件开发变得简单！** 🚀
 
-[立即开始](https://github.com/90le/Excel-Plugin-Template/archive/refs/heads/main.zip) • [查看文档](README-CN.md) • [加入讨论](https://github.com/90le/Excel-Plugin-Template/discussions)
+[立即开始](https://github.com/90le/Excel-Plugin-Template/archive/refs/heads/main.zip) • [查看文档](docs/README-CN.md) • [加入讨论](https://github.com/90le/Excel-Plugin-Template/discussions)
 
 </div> 
