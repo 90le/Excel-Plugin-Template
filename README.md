@@ -80,11 +80,24 @@ mv BasePlugin.cs MyExcelPlugin.cs
 // 在 MyExcelPlugin.cs 中修改
 public string Name => "我的Excel插件";
 public string Description => "我的插件描述";
+// 在 MyExcelPlugin.cs 中修改
+public string Name => "我的Excel插件";
+public string Description => "我的插件描述";
 public string Author => "您的姓名";
 ```
 
 ### 4️⃣ 添加功能
+### 4️⃣ 添加功能
 ```csharp
+// 在 Features/SampleFeatures.cs 中添加新功能
+new PluginFeature
+{
+    Id = "my_feature",
+    Name = "我的功能",
+    Description = "功能描述",
+    Category = "我的分类",
+    ImageMso = "FileNew",
+    Action = MyFeatureMethod
 // 在 Features/SampleFeatures.cs 中添加新功能
 new PluginFeature
 {
@@ -105,8 +118,33 @@ new PluginFeature
 ### 📸 功能截图
 ```
 [这里可以放置插件在Excel中的截图]
+### 5️⃣ 测试运行
+按 `F5` 启动调试，Excel 会自动加载您的插件！
+
+## 💡 示例展示
+
+### 📸 功能截图
+```
+[这里可以放置插件在Excel中的截图]
 ```
 
+### 🔧 内置示例功能
+
+| 功能 | 描述 | 技术点 |
+|------|------|--------|
+| 🌍 Hello World | 显示问候消息 | 基础消息框 |
+| 📊 获取选择信息 | 显示当前选中区域信息 | Excel Range 操作 |
+| ⏰ 插入当前时间 | 在活动单元格插入时间戳 | 单元格写入操作 |
+
+### 🏗️ 项目结构
+```
+BasePlugin/
+├── 📁 Features/              # 功能实现模块
+├── 📁 Models/                # 数据模型
+├── 📁 WPF/                   # WPF界面组件
+├── 📄 BasePlugin.cs          # 插件主入口
+├── 📄 manifest.json          # 插件配置
+└── 📚 完整开发文档
 ### 🔧 内置示例功能
 
 | 功能 | 描述 | 技术点 |
