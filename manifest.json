@@ -1,0 +1,73 @@
+{
+    "name": "BasePlugin",
+    "version": "1.0.0",
+    "description": "基础插件开发模板 - 为开发者提供快速开发框架",
+    "author": "开发者姓名",
+    "email": "developer@example.com",
+    "website": "https://example.com",
+    "entry": "BasePlugin.dll",
+    "mainClass": "BasePlugin.BasePlugin",
+    "minimumHostVersion": "1.0.0",
+    "copyright": "Copyright © 2024 开发者姓名. All rights reserved.",
+    "license": "MIT License",
+    "icon": "icon.png",
+    "updateInfo": {
+        "updateUrl": "https://example.com/api/plugins/update-check",
+        "downloadUrl": "https://example.com/api/plugins/download",
+        "checkIntervalHours": 24,
+        "autoCheck": false,
+        "supportedUpdateModes": ["full", "incremental"],
+        "backupBeforeUpdate": true,
+        "restartRequired": false,
+        "verifySignature": false,
+        "publicKeyPath": "public.key"
+    },
+    "changeLog": [
+        {
+            "version": "1.0.0",
+            "date": "2024-12-24",
+            "type": "major",
+            "changes": [
+                "初始基础模板发布",
+                "提供基础插件开发框架",
+                "包含示例功能实现"
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "name": "Microsoft.Office.Interop.Excel",
+            "version": "15.0.0.0",
+            "required": true
+        },
+        {
+            "name": "Office",
+            "version": "15.0.0.0",
+            "required": true
+        }
+    ],
+    "permissions": [
+        "Excel.Read",
+        "Excel.Write"
+    ],
+    "settings": [
+        {
+            "key": "enableLogging",
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用日志记录"
+        },
+        {
+            "key": "autoSaveEnabled",
+            "type": "boolean",
+            "default": false,
+            "description": "是否启用自动保存"
+        },
+        {
+            "key": "updateCheckEnabled",
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用自动更新检查"
+        }
+    ]
+} 

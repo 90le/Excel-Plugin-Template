@@ -1,0 +1,89 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup .NET Framework
+      uses: microsoft/setup-msbuild@v1.3
+      
+    - name: Setup NuGet
+      uses: nuget/setup-nuget@v1
+      
+    - name: Restore NuGet packages
+      run: nuget restore BasePlugin.csproj
+      
+    - name: Build solution
+      run: msbuild BasePlugin.csproj /p:Configuration=Release /p:Platform="Any CPU"
+      
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: BasePlugin-Release
+        path: bin/Release/
+        
+  create-release:
+    needs: build
+    runs-on: windows-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: BasePlugin-Release
+        path: ./release/
+        
+    - name: Create Release Package
+      run: |
+        Compress-Archive -Path ./release/net481/* -DestinationPath ./BasePlugin-${{ github.sha }}.zip
+      shell: pwsh
+      
+    - name: Calculate file hash
+      run: |
+        $hash = Get-FileHash ./BasePlugin-${{ github.sha }}.zip -Algorithm SHA256
+        echo "FILE_HASH=$($hash.Hash.ToLower())" >> $env:GITHUB_ENV
+      shell: pwsh
+      
+    - name: Create Release
+      if: github.event_name == 'push' && contains(github.event.head_commit.message, '[release]')
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ github.run_number }}
+        release_name: Release v${{ github.run_number }}
+        body: |
+          ## 🚀 BasePlugin Release v${{ github.run_number }}
+          
+          ### 📦 下载信息
+          - **文件大小**: 查看 Assets 中的文件大小
+          - **SHA256**: ${{ env.FILE_HASH }}
+          
+          ### 📝 更新内容
+          ${{ github.event.head_commit.message }}
+          
+          ### 🛠️ 安装方法
+          1. 下载 `BasePlugin-${{ github.sha }}.zip`
+          2. 解压到 DTI_Tool.AddIn 插件目录
+          3. 重启 Excel 或 WPS
+          
+          ### 📋 系统要求
+          - .NET Framework 4.8.1
+          - Microsoft Excel 2016+ 或 WPS Office
+          - Windows 10+
+        draft: false
+        prerelease: false 
