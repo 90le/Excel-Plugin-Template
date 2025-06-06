@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Build Status](https://github.com/yourusername/BasePlugin/workflows/Build%20and%20Test/badge.svg)](https://github.com/yourusername/BasePlugin/actions)
+[![Build Status](https://github.com/90le/Excel-Plugin-Template/workflows/Build%20and%20Test/badge.svg)](https://github.com/90le/Excel-Plugin-Template/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![.NET Framework](https://img.shields.io/badge/.NET%20Framework-4.8.1-blue.svg)](https://dotnet.microsoft.com/download/dotnet-framework)
 [![Office Support](https://img.shields.io/badge/Office-Excel%20%7C%20WPS-green.svg)](https://www.microsoft.com/office)
@@ -55,8 +55,8 @@ DTI_Tool.AddIn 是一个强大的热拔插插件开发框架，具有以下特�
 
 ### 1️⃣ 克隆模板
 ```bash
-git clone https://github.com/yourusername/BasePlugin.git
-cd BasePlugin
+git clone https://github.com/90le/Excel-Plugin-Template.git
+cd Excel-Plugin-Template
 ```
 
 ### 2️⃣ 重命名和配置
@@ -158,8 +158,8 @@ BasePlugin/
 我们欢迎任何形式的贡献！
 
 ### 参与方式
-- 🐛 [报告 Bug](https://github.com/yourusername/BasePlugin/issues/new?template=bug_report.md)
-- 💡 [提出功能建议](https://github.com/yourusername/BasePlugin/issues/new?template=feature_request.md)
+- 🐛 [报告 Bug](https://github.com/90le/Excel-Plugin-Template/issues/new?template=bug_report.md)
+- 💡 [提出功能建议](https://github.com/90le/Excel-Plugin-Template/issues/new?template=feature_request.md)
 - 📖 改进文档
 - 🔧 提交代码
 
@@ -168,15 +168,15 @@ BasePlugin/
 
 <!-- 
 将自动显示贡献者列表
-[![Contributors](https://contrib.rocks/image?repo=yourusername/BasePlugin)](https://github.com/yourusername/BasePlugin/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=90le/Excel-Plugin-Template)](https://github.com/90le/Excel-Plugin-Template/graphs/contributors)
 -->
 
 ## 📞 支持与联系
 
 ### 🆘 获取帮助
-- 📖 [查看文档](README.md)
-- 🐛 [提交 Issue](https://github.com/yourusername/BasePlugin/issues)
-- 💬 [讨论区](https://github.com/yourusername/BasePlugin/discussions)
+- 📖 [查看文档](README-CN.md)
+- 🐛 [提交 Issue](https://github.com/90le/Excel-Plugin-Template/issues)
+- 💬 [讨论区](https://github.com/90le/Excel-Plugin-Template/discussions)
 
 ### 📱 联系方式
 - 📧 邮箱：767759678@qq.com  
@@ -207,6 +207,6 @@ in the Software without restriction...
 
 **让 Excel 插件开发变得简单！** 🚀
 
-[立即开始](https://github.com/yourusername/BasePlugin/archive/refs/heads/main.zip) • [查看文档](README.md) • [加入讨论](https://github.com/yourusername/BasePlugin/discussions)
+[立即开始](https://github.com/90le/Excel-Plugin-Template/archive/refs/heads/main.zip) • [查看文档](README-CN.md) • [加入讨论](https://github.com/90le/Excel-Plugin-Template/discussions)
 
 </div> 
