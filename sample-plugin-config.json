@@ -1,0 +1,128 @@
+{
+    "name": "SamplePlugin",
+    "version": "1.0.0",
+    "description": "示例插件 - 演示插件开发的各种功能特性",
+    "author": "示例开发者",
+    "email": "sample@developer.com",
+    "website": "https://github.com/sample/plugin",
+    "entry": "SamplePlugin.dll",
+    "mainClass": "SamplePlugin.MainPlugin",
+    "minimumHostVersion": "1.0.0",
+    "copyright": "Copyright © 2024 示例开发者. All rights reserved.",
+    "license": "MIT License",
+    "icon": "sample-icon.png",
+    "updateInfo": {
+        "updateUrl": "https://api.example.com/plugins/sample/updateInfo.json",
+        "checkIntervalHours": 24,
+        "autoCheck": true,
+        "supportedUpdateModes": ["full", "incremental"],
+        "backupBeforeUpdate": true,
+        "restartRequired": true,
+        "verifySignature": true,
+        "publicKeyPath": "public.key"
+    },
+    "changeLog": [
+        {
+            "version": "1.0.0",
+            "date": "2024-12-24",
+            "type": "major",
+            "changes": [
+                "初始版本发布",
+                "实现基础数据处理功能",
+                "添加用户界面",
+                "支持Excel数据导入导出",
+                "集成日志记录系统"
+            ]
+        }
+    ],
+    "dependencies": [
+        {
+            "name": "Microsoft.Office.Interop.Excel",
+            "version": "15.0.0.0",
+            "required": true
+        },
+        {
+            "name": "Newtonsoft.Json",
+            "version": "13.0.3",
+            "required": true
+        },
+        {
+            "name": "Office",
+            "version": "15.0.0.0",
+            "required": true
+        }
+    ],
+    "permissions": [
+        "Excel.Read",
+        "Excel.Write",
+        "File.Read",
+        "File.Write",
+        "Network.Access"
+    ],
+    "settings": [
+        {
+            "key": "enableLogging",
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用详细日志记录"
+        },
+        {
+            "key": "autoSaveEnabled",
+            "type": "boolean",
+            "default": false,
+            "description": "是否启用自动保存功能"
+        },
+        {
+            "key": "updateCheckEnabled",
+            "type": "boolean",
+            "default": true,
+            "description": "是否启用自动更新检查"
+        },
+        {
+            "key": "maxRetryCount",
+            "type": "number",
+            "default": 3,
+            "description": "操作失败时的最大重试次数"
+        },
+        {
+            "key": "dataSourcePath",
+            "type": "string",
+            "default": "./data",
+            "description": "数据源文件夹路径"
+        },
+        {
+            "key": "supportedFileTypes",
+            "type": "array",
+            "default": [".xlsx", ".xls", ".csv"],
+            "description": "支持的文件类型列表"
+        }
+    ],
+    "modules": [
+        {
+            "name": "DataProcessor",
+            "description": "数据处理模块",
+            "enabled": true,
+            "assembly": "SamplePlugin.dll",
+            "className": "SamplePlugin.Modules.DataProcessor"
+        },
+        {
+            "name": "UIManager",
+            "description": "用户界面管理模块",
+            "enabled": true,
+            "assembly": "SamplePlugin.dll",
+            "className": "SamplePlugin.Modules.UIManager"
+        }
+    ],
+    "localization": {
+        "defaultLanguage": "zh-CN",
+        "supportedLanguages": ["zh-CN", "en-US"],
+        "resourcePath": "./Resources/Languages"
+    },
+    "category": "数据处理",
+    "tags": ["Excel", "数据处理", "自动化", "办公"],
+    "compatibility": {
+        "minDotNetVersion": "4.7.2",
+        "supportedOfficeVersions": ["2016", "2019", "365"],
+        "operatingSystems": ["Windows 10", "Windows 11"]
+    }
+} 

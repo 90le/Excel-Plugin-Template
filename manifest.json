@@ -12,8 +12,7 @@
     "license": "MIT License",
     "icon": "icon.png",
     "updateInfo": {
-        "updateUrl": "https://example.com/api/plugins/update-check",
-        "downloadUrl": "https://example.com/api/plugins/download",
+        "updateUrl": "http://90le.cn/api/DTI_Tool.AddIn/Plugins/BasePlugin/updateInfo.json",
         "checkIntervalHours": 24,
         "autoCheck": false,
         "supportedUpdateModes": ["full", "incremental"],
