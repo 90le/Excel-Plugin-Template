@@ -1,0 +1,357 @@
+<UserControl x:Class="BasePlugin.WPF.Views.TaskPaneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" 
+             d:DesignWidth="350"
+             Background="#F8F9FA">
+    
+    <UserControl.Resources>
+        <!-- 现代化样式定义 -->
+        <Style x:Key="ModernButton" TargetType="Button">
+            <Setter Property="Background" Value="#007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Padding" Value="12,8"/>
+            <Setter Property="Margin" Value="0,4"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" 
+                                CornerRadius="4"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"
+                                            Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#005A9E"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#004578"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#CCCCCC"/>
+                                <Setter Property="Foreground" Value="#666666"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#6C757D"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#5A6268"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#495057"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="SuccessButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#28A745"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#218838"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#1E7E34"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="WarningButton" TargetType="Button" BasedOn="{StaticResource ModernButton}">
+            <Setter Property="Background" Value="#FFC107"/>
+            <Setter Property="Foreground" Value="#212529"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E0A800"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" Value="#D39E00"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ModernGroupBox" TargetType="GroupBox">
+            <Setter Property="Foreground" Value="#495057"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="0,8"/>
+            <Setter Property="Padding" Value="12"/>
+            <Setter Property="BorderBrush" Value="#DEE2E6"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="6">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Border Grid.Row="0" 
+                                        Background="#F8F9FA"
+                                        BorderBrush="#DEE2E6"
+                                        BorderThickness="0,0,0,1"
+                                        CornerRadius="6,6,0,0"
+                                        Padding="12,8">
+                                    <ContentPresenter ContentSource="Header"/>
+                                </Border>
+                                <ContentPresenter Grid.Row="1" 
+                                                Margin="{TemplateBinding Padding}"/>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="InfoTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#495057"/>
+            <Setter Property="Margin" Value="0,2"/>
+        </Style>
+
+        <Style x:Key="ValueTextBlock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Foreground" Value="#212529"/>
+            <Setter Property="Margin" Value="8,2,0,2"/>
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 标题栏 -->
+        <Border Grid.Row="0" 
+                Padding="16,12">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#007ACC" Offset="0"/>
+                    <GradientStop Color="#005A9E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0"
+                           Text="BasePlugin 控制台" 
+                           FontSize="18" 
+                           FontWeight="Bold"
+                           Foreground="White"/>
+                <Button Grid.Column="1"
+                        Content="✕"
+                        Background="Transparent"
+                        Foreground="White"
+                        BorderThickness="0"
+                        FontSize="16"
+                        Width="30"
+                        Height="30"
+                        Cursor="Hand"
+                        Click="btnClose_Click"
+                        ToolTip="关闭任务窗格"/>
+            </Grid>
+        </Border>
+        
+        <!-- 主内容区域 -->
+        <ScrollViewer Grid.Row="1" 
+                      VerticalScrollBarVisibility="Auto"
+                      Padding="16,12">
+            <StackPanel>
+                
+                <!-- 工作表信息卡片 -->
+                <GroupBox Header="📊 工作表信息" Style="{StaticResource ModernGroupBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="工作簿：" Style="{StaticResource InfoTextBlock}"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Name="txtWorkbookName" Text="未加载" Style="{StaticResource ValueTextBlock}"/>
+                        
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="工作表：" Style="{StaticResource InfoTextBlock}"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Name="txtWorksheetName" Text="未加载" Style="{StaticResource ValueTextBlock}"/>
+                        
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="选中区域：" Style="{StaticResource InfoTextBlock}"/>
+                        <TextBlock Grid.Row="2" Grid.Column="1" Name="txtSelection" Text="无选择" Style="{StaticResource ValueTextBlock}"/>
+                        
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="单元格数：" Style="{StaticResource InfoTextBlock}"/>
+                        <TextBlock Grid.Row="3" Grid.Column="1" Name="txtCellCount" Text="0" Style="{StaticResource ValueTextBlock}"/>
+                        
+                        <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
+                                Content="🔄 刷新信息" 
+                                Style="{StaticResource SecondaryButton}"
+                                Margin="0,12,0,0"
+                                Click="btnRefresh_Click"/>
+                    </Grid>
+                </GroupBox>
+                
+                <!-- 快速操作 -->
+                <GroupBox Header="⚡ 快速操作" Style="{StaticResource ModernGroupBox}">
+                    <StackPanel>
+                        <Button Content="📅 插入当前时间" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="insert_current_time"
+                                Click="btnQuickAction_Click"/>
+                        <Button Content="📝 获取选择信息" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="get_selection_info"
+                                Click="btnQuickAction_Click"/>
+                        <Button Content="🎨 应用单元格样式" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="apply_cell_styles"
+                                Click="btnQuickAction_Click"/>
+                        <Button Content="📊 数据统计" 
+                                Style="{StaticResource SuccessButton}"
+                                Tag="data_statistics"
+                                Click="btnQuickAction_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                
+                <!-- 数据处理工具 -->
+                <GroupBox Header="🔧 数据处理" Style="{StaticResource ModernGroupBox}">
+                    <StackPanel>
+                        <Button Content="🔤 数据排序" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="data_sort"
+                                Click="btnDataAction_Click"/>
+                        <Button Content="🔍 数据筛选" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="data_filter"
+                                Click="btnDataAction_Click"/>
+                        <Button Content="🗑️ 删除重复项" 
+                                Style="{StaticResource WarningButton}"
+                                Tag="remove_duplicates"
+                                Click="btnDataAction_Click"/>
+                        <Button Content="🎲 生成随机数据" 
+                                Style="{StaticResource SecondaryButton}"
+                                Tag="generate_random_data"
+                                Click="btnUtilityAction_Click"/>
+                        <Button Content="📋 填充序列" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="fill_series"
+                                Click="btnDataAction_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                
+                <!-- 格式化工具 -->
+                <GroupBox Header="🎨 格式化" Style="{StaticResource ModernGroupBox}">
+                    <StackPanel>
+                        <Button Content="🔢 应用数字格式" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="apply_number_format"
+                                Click="btnFormatAction_Click"/>
+                        <Button Content="🌈 条件格式化" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="apply_conditional_format"
+                                Click="btnFormatAction_Click"/>
+                        <Button Content="📋 应用边框" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="apply_borders"
+                                Click="btnFormatAction_Click"/>
+                        <Button Content="🎯 突出显示重要数据" 
+                                Style="{StaticResource SuccessButton}"
+                                Tag="highlight_important"
+                                Click="btnFormatAction_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                
+                <!-- 工作表管理 -->
+                <GroupBox Header="📋 工作表管理" Style="{StaticResource ModernGroupBox}">
+                    <StackPanel>
+                        <Button Content="➕ 创建新工作表" 
+                                Style="{StaticResource SuccessButton}"
+                                Tag="create_worksheet"
+                                Click="btnWorksheetAction_Click"/>
+                        <Button Content="✏️ 重命名工作表" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="rename_worksheet"
+                                Click="btnWorksheetAction_Click"/>
+                        <Button Content="🔒 保护工作表" 
+                                Style="{StaticResource WarningButton}"
+                                Tag="protect_worksheet"
+                                Click="btnWorksheetAction_Click"/>
+                        <Button Content="🗂️ 工作表列表" 
+                                Style="{StaticResource SecondaryButton}"
+                                Tag="list_worksheets"
+                                Click="btnWorksheetAction_Click"/>
+                    </StackPanel>
+                </GroupBox>
+                
+                <!-- 实用工具 -->
+                <GroupBox Header="🛠️ 实用工具" Style="{StaticResource ModernGroupBox}">
+                    <StackPanel>
+                        <Button Content="💾 导出为CSV" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="export_csv"
+                                Click="btnUtilityAction_Click"/>
+                        <Button Content="🔍 高级查找替换" 
+                                Style="{StaticResource ModernButton}"
+                                Tag="find_replace_advanced"
+                                Click="btnUtilityAction_Click"/>
+                        <Button Content="ℹ️ 工作簿信息" 
+                                Style="{StaticResource SecondaryButton}"
+                                Tag="workbook_info"
+                                Click="btnUtilityAction_Click"/>
+                        <Button Content="🧹 数据清理" 
+                                Style="{StaticResource WarningButton}"
+                                Tag="clean_data"
+                                Click="btnUtilityAction_Click"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- 状态信息 -->
+                <Border Background="#E3F2FD" 
+                        BorderBrush="#2196F3" 
+                        BorderThickness="1" 
+                        CornerRadius="4" 
+                        Padding="12"
+                        Margin="0,8">
+                    <StackPanel>
+                        <TextBlock Text="💡 使用提示" 
+                                   FontWeight="SemiBold" 
+                                   FontSize="13"
+                                   Foreground="#1976D2"/>
+                        <TextBlock Name="txtStatus" 
+                                   Text="准备就绪 - 选择工作表区域后使用相关功能"
+                                   FontSize="11"
+                                   Foreground="#424242"
+                                   TextWrapping="Wrap"
+                                   Margin="0,4,0,0"/>
+                    </StackPanel>
+                </Border>
+                
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl> 

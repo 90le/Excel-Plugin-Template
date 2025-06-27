@@ -1,0 +1,111 @@
+<Window x:Class="BasePlugin.WPF.Views.DataEntryForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="数据录入表单" 
+        Height="400" 
+        Width="500"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+    
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 标题 -->
+        <TextBlock Grid.Row="0" 
+                   Text="员工信息录入" 
+                   FontSize="20" 
+                   FontWeight="Bold"
+                   Margin="0,0,0,20"/>
+        
+        <!-- 表单内容 -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <!-- 姓名 -->
+            <Label Grid.Row="0" Grid.Column="0" Content="姓名：" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     Name="txtName"
+                     Text="{Binding Name}"
+                     Margin="0,5"/>
+            
+            <!-- 邮箱 -->
+            <Label Grid.Row="1" Grid.Column="0" Content="邮箱：" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     Name="txtEmail"
+                     Text="{Binding Email}"
+                     Margin="0,5"/>
+            
+            <!-- 电话 -->
+            <Label Grid.Row="2" Grid.Column="0" Content="电话：" VerticalAlignment="Center"/>
+            <TextBox Grid.Row="2" Grid.Column="1" 
+                     Name="txtPhone"
+                     Text="{Binding Phone}"
+                     Margin="0,5"/>
+            
+            <!-- 部门 -->
+            <Label Grid.Row="3" Grid.Column="0" Content="部门：" VerticalAlignment="Center"/>
+            <ComboBox Grid.Row="3" Grid.Column="1" 
+                      Name="cmbDepartment"
+                      SelectedItem="{Binding Department}"
+                      Margin="0,5">
+                <ComboBoxItem>销售部</ComboBoxItem>
+                <ComboBoxItem>技术部</ComboBoxItem>
+                <ComboBoxItem>市场部</ComboBoxItem>
+                <ComboBoxItem>人事部</ComboBoxItem>
+                <ComboBoxItem>财务部</ComboBoxItem>
+            </ComboBox>
+            
+            <!-- 入职日期 -->
+            <Label Grid.Row="4" Grid.Column="0" Content="入职日期：" VerticalAlignment="Center"/>
+            <DatePicker Grid.Row="4" Grid.Column="1" 
+                        Name="dpJoinDate"
+                        SelectedDate="{Binding JoinDate}"
+                        Margin="0,5"/>
+            
+            <!-- 提示信息 -->
+            <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" 
+                       Text="* 所有字段均为必填项"
+                       Foreground="Gray"
+                       FontSize="11"
+                       Margin="0,10,0,0"/>
+        </Grid>
+        
+        <!-- 按钮区域 -->
+        <StackPanel Grid.Row="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right"
+                    Margin="0,20,0,0">
+            <Button Name="btnSave" 
+                    Content="保存" 
+                    Width="80" 
+                    Height="30"
+                    Margin="0,0,10,0"
+                    IsDefault="True"
+                    Click="btnSave_Click"/>
+            <Button Name="btnCancel" 
+                    Content="取消" 
+                    Width="80" 
+                    Height="30"
+                    IsCancel="True"
+                    Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window> 

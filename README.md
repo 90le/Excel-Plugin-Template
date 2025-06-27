@@ -133,12 +133,27 @@ new PluginFeature
 ### 🏗️ 项目结构
 ```
 BasePlugin/
-├── 📁 Features/              # 功能实现模块
-├── 📁 Models/                # 数据模型
-├── 📁 WPF/                   # WPF界面组件
-├── 📄 BasePlugin.cs          # 插件主入口
-├── 📄 manifest.json          # 插件配置
-└── 📚 完整开发文档
+├── Core/                    # 核心功能模块
+│   ├── FeatureManager.cs   # 功能管理器
+│   ├── TaskPaneManager.cs  # 任务窗格管理器
+│   ├── PluginLogger.cs     # 日志记录器
+│   └── MessageHelper.cs    # 消息帮助类
+├── Features/               # 功能实现模块
+│   ├── BasicFeatures.cs    # 基础功能
+│   ├── DataProcessingFeatures.cs  # 数据处理功能
+│   ├── FormattingFeatures.cs      # 格式化功能
+│   ├── WorksheetFeatures.cs       # 工作表管理功能
+│   ├── UtilityFeatures.cs         # 实用工具功能
+│   ├── WindowDemoFeatures.cs      # 窗口演示功能
+│   └── LoggingDemoFeatures.cs     # 日志演示功能
+├── Models/                 # 数据模型
+│   └── PluginFeature.cs   # 功能模型
+├── WPF/                   # WPF界面相关
+│   ├── Views/            # 视图文件
+│   ├── ViewModels/       # 视图模型
+│   ├── Controls/         # 自定义控件
+│   └── Common/           # 通用组件
+└── BasePlugin.cs         # 插件主类
 ```
 
 ## 🛠️ 开发环境
@@ -150,7 +165,6 @@ BasePlugin/
 - Microsoft Excel 2016+ 或 WPS Office
 
 ### 依赖项
-- Microsoft.Office.Interop.Excel
 - .NET Framework 4.8.1
 - DTI_Tool.AddIn 框架
 
@@ -187,10 +201,7 @@ BasePlugin/
 ### 开发者
 感谢所有贡献者的努力！
 
-<!-- 
-将自动显示贡献者列表
 [![Contributors](https://contrib.rocks/image?repo=90le/Excel-Plugin-Template)](https://github.com/90le/Excel-Plugin-Template/graphs/contributors)
--->
 
 ## 📞 支持与联系
 

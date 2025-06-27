@@ -1,0 +1,226 @@
+<Window x:Class="BasePlugin.WPF.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="插件设置" 
+        Height="450" 
+        Width="600"
+        WindowStartupLocation="CenterOwner">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <!-- 设置内容 -->
+        <TabControl Grid.Row="0" Margin="10">
+            <!-- 常规设置 -->
+            <TabItem Header="常规">
+                <ScrollViewer Margin="10">
+                    <StackPanel>
+                        <GroupBox Header="基本设置" Margin="0,0,0,10">
+                            <StackPanel Margin="10">
+                                <CheckBox Name="chkEnableLogging" 
+                                          Content="启用日志记录" 
+                                          IsChecked="True"
+                                          Margin="0,5"/>
+                                <CheckBox Name="chkAutoSave" 
+                                          Content="启用自动保存" 
+                                          IsChecked="False"
+                                          Margin="0,5"/>
+                                <CheckBox Name="chkShowNotifications" 
+                                          Content="显示通知消息" 
+                                          IsChecked="True"
+                                          Margin="0,5"/>
+                            </StackPanel>
+                        </GroupBox>
+                        
+                        <GroupBox Header="默认值设置" Margin="0,0,0,10">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="120"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Label Grid.Row="0" Grid.Column="0" Content="默认日期格式："/>
+                                <ComboBox Grid.Row="0" Grid.Column="1" 
+                                          Name="cmbDateFormat"
+                                          SelectedIndex="0"
+                                          Margin="0,2">
+                                    <ComboBoxItem>yyyy-MM-dd</ComboBoxItem>
+                                    <ComboBoxItem>MM/dd/yyyy</ComboBoxItem>
+                                    <ComboBoxItem>dd.MM.yyyy</ComboBoxItem>
+                                </ComboBox>
+                                
+                                <Label Grid.Row="1" Grid.Column="0" Content="默认数字格式："/>
+                                <ComboBox Grid.Row="1" Grid.Column="1" 
+                                          Name="cmbNumberFormat"
+                                          SelectedIndex="0"
+                                          Margin="0,2">
+                                    <ComboBoxItem>#,##0.00</ComboBoxItem>
+                                    <ComboBoxItem>0.00</ComboBoxItem>
+                                    <ComboBoxItem>#,##0</ComboBoxItem>
+                                </ComboBox>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <!-- 高级设置 -->
+            <TabItem Header="高级">
+                <ScrollViewer Margin="10">
+                    <StackPanel>
+                        <GroupBox Header="性能设置" Margin="0,0,0,10">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                
+                                <Label Grid.Row="0" Grid.Column="0" Content="最大处理行数："/>
+                                <TextBox Grid.Row="0" Grid.Column="1" 
+                                         Name="txtMaxRows"
+                                         Text="10000"
+                                         Margin="0,2"/>
+                                
+                                <Label Grid.Row="1" Grid.Column="0" Content="批处理大小："/>
+                                <TextBox Grid.Row="1" Grid.Column="1" 
+                                         Name="txtBatchSize"
+                                         Text="100"
+                                         Margin="0,2"/>
+                                
+                                <Label Grid.Row="2" Grid.Column="0" Content="超时时间（秒）："/>
+                                <TextBox Grid.Row="2" Grid.Column="1" 
+                                         Name="txtTimeout"
+                                         Text="30"
+                                         Margin="0,2"/>
+                            </Grid>
+                        </GroupBox>
+                        
+                        <GroupBox Header="日志设置" Margin="0,0,0,10">
+                            <StackPanel Margin="10">
+                                <Label Content="日志级别："/>
+                                <ComboBox Name="cmbLogLevel" 
+                                          SelectedIndex="1"
+                                          Margin="0,2">
+                                    <ComboBoxItem>Debug</ComboBoxItem>
+                                    <ComboBoxItem>Info</ComboBoxItem>
+                                    <ComboBoxItem>Warning</ComboBoxItem>
+                                    <ComboBoxItem>Error</ComboBoxItem>
+                                </ComboBox>
+                                
+                                <CheckBox Name="chkLogToFile" 
+                                          Content="将日志写入文件" 
+                                          IsChecked="False"
+                                          Margin="0,10,0,5"/>
+                                
+                                <Label Content="日志文件路径："/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBox Grid.Column="0" 
+                                             Name="txtLogPath"
+                                             Text="C:\Logs\BasePlugin.log"
+                                             IsEnabled="{Binding ElementName=chkLogToFile, Path=IsChecked}"/>
+                                    <Button Grid.Column="1" 
+                                            Content="浏览..." 
+                                            Width="60"
+                                            Margin="5,0,0,0"
+                                            IsEnabled="{Binding ElementName=chkLogToFile, Path=IsChecked}"
+                                            Click="btnBrowseLog_Click"/>
+                                </Grid>
+                            </StackPanel>
+                        </GroupBox>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+            
+            <!-- 关于 -->
+            <TabItem Header="关于">
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0" 
+                               Text="BasePlugin" 
+                               FontSize="24" 
+                               FontWeight="Bold"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,10"/>
+                    
+                    <TextBlock Grid.Row="1" 
+                               Text="版本 1.0.0"
+                               HorizontalAlignment="Center"
+                               Margin="0,0,0,20"/>
+                    
+                    <StackPanel Grid.Row="2">
+                        <TextBlock TextWrapping="Wrap" Margin="0,0,0,10">
+                            BasePlugin 是一个功能完整的 Excel 插件开发模板，为开发者提供了快速开发插件的基础框架。
+                        </TextBlock>
+                        
+                        <TextBlock TextWrapping="Wrap" Margin="0,0,0,10">
+                            主要功能：
+                        </TextBlock>
+                        
+                        <TextBlock Margin="20,0,0,5">• 清晰的项目结构</TextBlock>
+                        <TextBlock Margin="20,0,0,5">• 完整的功能示例</TextBlock>
+                        <TextBlock Margin="20,0,0,5">• 详细的日志记录</TextBlock>
+                        <TextBlock Margin="20,0,0,5">• WPF界面支持</TextBlock>
+                        <TextBlock Margin="20,0,0,5">• 任务窗格支持</TextBlock>
+                        
+                        <TextBlock Margin="0,20,0,0" FontWeight="Bold">
+                            © 2024 开发者姓名. All rights reserved.
+                        </TextBlock>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        
+        <!-- 按钮区域 -->
+        <Border Grid.Row="1" 
+                BorderBrush="LightGray" 
+                BorderThickness="0,1,0,0">
+            <StackPanel Orientation="Horizontal" 
+                        HorizontalAlignment="Right"
+                        Margin="10">
+                <Button Name="btnOK" 
+                        Content="确定" 
+                        Width="80" 
+                        Height="30"
+                        Margin="0,0,10,0"
+                        IsDefault="True"
+                        Click="btnOK_Click"/>
+                <Button Name="btnCancel" 
+                        Content="取消" 
+                        Width="80" 
+                        Height="30"
+                        IsCancel="True"
+                        Click="btnCancel_Click"/>
+                <Button Name="btnApply" 
+                        Content="应用" 
+                        Width="80" 
+                        Height="30"
+                        Margin="10,0,0,0"
+                        Click="btnApply_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window> 

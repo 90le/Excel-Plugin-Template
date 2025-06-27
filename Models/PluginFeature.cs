@@ -78,9 +78,9 @@ namespace BasePlugin.Models
         /// <summary>
         /// 转换为PluginCommand
         /// </summary>
-        public PluginCommand ToPluginCommand()
+        public DTI_Tool.AddIn.Common.Interfaces.PluginCommand ToPluginCommand()
         {
-            return new PluginCommand
+            return new DTI_Tool.AddIn.Common.Interfaces.PluginCommand
             {
                 Id = Id,
                 Name = Name,
