@@ -1,3 +1,6 @@
+# Visual Studio metadata and temporary files
+.vs/
+
 # Build results
 bin/
 obj/
